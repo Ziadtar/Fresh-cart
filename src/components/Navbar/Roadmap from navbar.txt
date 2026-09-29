@@ -1,0 +1,8 @@
+navbar left side will hold the logo and search bar 
+
+
+####################################################### 
+
+
+navbar right side will hold the navigation menu , cart icon , wishlist icon and user profile icon or signup button 
+
