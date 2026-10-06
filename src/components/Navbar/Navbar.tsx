@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import logo from "@images/download.svg";
+import { IdCard } from "lucide-react";
 
 import {
   NavigationMenu,
@@ -14,6 +15,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Image from "next/image";
+import { InputInline } from "../SearchBar/SearchBar";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -57,8 +59,9 @@ export default function NavigationMenuDemo() {
   return (
     <nav className="container mx-auto flex items-center justify-between">
       {/* right side */}
-      <div className="flex items-center gap-2 py-3">
+      <div className="flex items-center gap-2 py-3 grow">
         <Image src={logo} alt="logo" />
+        <InputInline />
       </div>
       {/* left side */}
       <NavigationMenu className="flex items-center gap-2 py-3">
@@ -130,7 +133,7 @@ export default function NavigationMenuDemo() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 className={navigationMenuTriggerStyle()}
-                render={<Link href="/register">Sign Up</Link>}
+                render={<Link href="/register">sign up</Link>}
               />
             </NavigationMenuItem>
           </NavigationMenuList>
