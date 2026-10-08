@@ -3,7 +3,6 @@
 import * as React from "react";
 import Link from "next/link";
 import logo from "@images/download.svg";
-import { IdCard } from "lucide-react";
 
 import {
   NavigationMenu,
@@ -16,6 +15,8 @@ import {
 } from "@/components/ui/navigation-menu";
 import Image from "next/image";
 import { InputInline } from "../SearchBar/SearchBar";
+import { Button } from "../ui/button";
+import { ChevronDown, Headset, Heart, ShoppingCart, User } from "lucide-react";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -96,10 +97,22 @@ export default function NavigationMenuDemo() {
               />
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink
+              <NavigationMenuTrigger
                 className={navigationMenuTriggerStyle()}
-                render={<Link href="/categories">Categories</Link>}
-              />
+                render={
+                  <Link href="/categories">
+                    Categories <ChevronDown size={16} />
+                  </Link>
+                }></NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul>
+                  <ListItem href="/" title="All Categories" />
+                  <ListItem href="/" title="Electronics" />
+                  <ListItem href="/" title="Women's Fashion" />
+                  <ListItem href="/" title="Men's Fashion" />
+                  <ListItem href="/" title="Beauty & Health" />
+                </ul>
+              </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink
@@ -115,25 +128,60 @@ export default function NavigationMenuDemo() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 className={navigationMenuTriggerStyle()}
-                render={<Link href="/contact">Support</Link>}
+                render={
+                  <Link href="/contact">
+                    <div className="pe-2">
+                      <div className="w-full h-full flex items-center justify-center pe-3 border-e-2 border-[#E5E7EB] hover:text-muted-foreground!">
+                        <div className="flex items-center gap-1 bg-[#F0FDF4] p-2.5 rounded-full">
+                          <Headset color="#16A34A" className="w-5! h-5!" />
+                        </div>
+                        <div className="flex flex-col ps-2 ">
+                          <p className="text-[12px] ">support</p>
+                          <p className="text-xs font-medium">24/7 help</p>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                }
               />
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink
                 className={navigationMenuTriggerStyle()}
-                render={<Link href="/wishlist">Wishlist</Link>}
+                render={
+                  <Link
+                    href="/wishlist"
+                    className="hover:bg-[#F3F4F6] rounded-[50%]">
+                    <Heart className="w-6.25! h-5!" />
+                  </Link>
+                }
               />
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink
                 className={navigationMenuTriggerStyle()}
-                render={<Link href="/cart">Cart</Link>}
+                render={
+                  <Link
+                    href="/cart"
+                    className="hover:bg-[#F3F4F6] rounded-[50%]">
+                    <ShoppingCart className="w-6.25! h-5!" />
+                  </Link>
+                }
               />
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink
                 className={navigationMenuTriggerStyle()}
-                render={<Link href="/register">sign up</Link>}
+                render={
+                  <Link href="/register">
+                    <Button
+                      variant="outline"
+                      className="w-28.75 h-10 rounded-4xl ps-2 cursor-pointer bg-green-600 text-white hover:bg-green-700 font-bold">
+                      <User />
+                      sign up
+                    </Button>
+                  </Link>
+                }
               />
             </NavigationMenuItem>
           </NavigationMenuList>
@@ -154,9 +202,13 @@ function ListItem({
     <li {...props}>
       <NavigationMenuLink
         render={
-          <Link href={href}>
-            <div className="flex flex-col gap-1 text-sm">
-              <div className="leading-none font-medium">{title}</div>
+          <Link
+            href={href}
+            className="flex w-full items-center justify-between rounded-lg p-3 text-sm outline-none transition-colors hover:bg-muted focus:bg-muted">
+            <div className="flex flex-col gap-1 text-sm py-2 w-50 ">
+              <div className="leading-none font-medium hover:text-[var(--color--main)]">
+                {title}
+              </div>
               <div className="line-clamp-2 text-muted-foreground">
                 {children}
               </div>
