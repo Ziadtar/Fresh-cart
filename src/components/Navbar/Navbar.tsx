@@ -28,7 +28,13 @@ import {
   User,
   UserPlus,
 } from "lucide-react";
-
+const categories: { title: string; href: string }[] = [
+  { title: "All Categories", href: "/" },
+  { title: "Electronics", href: "/" },
+  { title: "Women's Fashion", href: "/" },
+  { title: "Men's Fashion", href: "/" },
+  { title: "Beauty & Health", href: "/" },
+];
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Alert Dialog",
@@ -119,12 +125,12 @@ export default function NavigationMenuDemo() {
       {/* the line */}
       {/* bottom nav */}
       <div className="container mx-auto flex items-center justify-between w-full">
-        {/* right side */}
-        <div className="flex items-center gap-2 py-3 grow">
+        {/* left side */}
+        <Link href="/" className="flex items-center gap-2 py-3 grow">
           <Image src={logo} alt="logo" />
           <InputInline />
-        </div>
-        {/* left side */}
+        </Link>
+        {/* right side */}
         <NavigationMenu className="flex items-center gap-2 py-3">
           <NavigationMenuList>
             <NavigationMenuItem className="flex md:hidden">
@@ -166,11 +172,13 @@ export default function NavigationMenuDemo() {
                   }></NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul>
-                    <ListItem href="/" title="All Categories" />
-                    <ListItem href="/" title="Electronics" />
-                    <ListItem href="/" title="Women's Fashion" />
-                    <ListItem href="/" title="Men's Fashion" />
-                    <ListItem href="/" title="Beauty & Health" />
+                    {categories.map((category) => (
+                      <ListItem
+                        key={category.title}
+                        href={category.href}
+                        title={category.title}
+                      />
+                    ))}
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
